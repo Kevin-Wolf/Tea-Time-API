@@ -3,22 +3,33 @@ const app = express()
 const PORT = 8000
 
 
-const rappers = {
-    '21 savage':{
-    'age':29,
-    'birthName':'Sheyaa Bin Abraham-Joseph',
-    'location':'London, England'
+const tea = {
+    'oolong':{
+    'type':'black',
+    'origin': 'yo mommas house',
+    'waterTemp':200,
+    'caffinated':true,
+    'steepTimeSeconds': 190,
+    'flavor': 'delicious'
+    
+
     },
 
-    'chance the rapper':{
-    'age':29,
-    'birthName':'Chancelor Bennett',
-    'location':'Chicago, Illinois'
+    'matcha':{
+        'type':'green',
+        'origin': 'yo mommas house',
+        'waterTemp':245,
+        'caffinated':true,
+        'steepTimeSeconds': 180,
+        'flavor': 'delicious'
+
     },
     'unknown':{
-        'age':0,
-        'birthName':'unknown',
-        'location':'unknown'
+        'type':'unknown',
+        'origin': 'unknown',
+        'waterTemp':0,
+        'caffinated':'unknown',
+        'steepTime': 'unknown'
         }
 }
 
@@ -28,16 +39,16 @@ app.get('/', (request, response)=>{
 })
 
 app.get('/api/:name', (request, response)=>{
-    const rapperName = request.params.name.toLowerCase()
-    if(rappers[rapperName]){
-        response.json(rappers[rapperName])
+    const teaName = request.params.name.toLowerCase()
+    if(tea[teaName]){
+        response.json(tea[teaName])
     } else {
-        response.json(rappers['unknown'])
+        response.json(tea['unknown'])
     }
 })
 
 
-app.listen(PORT, ()=>{
+app.listen(process.env.PORT || PORT, ()=>{
     console.log(`The server is now running on port ${PORT}! Betta Go Catch It!`)
 })
 
